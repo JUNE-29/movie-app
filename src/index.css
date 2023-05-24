@@ -9,9 +9,14 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    @apply bg-backgroundColor text-white;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+#root {
+    @apply w-full max-w-[1308px] m-0 m-auto;
 }
