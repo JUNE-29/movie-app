@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MovieCard from "../components/MovieCard";
 
 export default function Movies() {
     const [trendingMovies, setTrendingMovies] = useState();
@@ -20,7 +21,7 @@ export default function Movies() {
             {trendingMovies && (
                 <ul>
                     {trendingMovies.map((movie) => (
-                        <li key={movie.id}>{movie.title}</li>
+                        <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
@@ -29,9 +30,7 @@ export default function Movies() {
             {popularMovies && (
                 <ul>
                     {popularMovies.map((movie) => (
-                        <li key={movie.id}>
-                            {movie.title} {movie.vote_average}
-                        </li>
+                        <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
@@ -40,9 +39,7 @@ export default function Movies() {
             {nowPlaingMovies && (
                 <ul>
                     {nowPlaingMovies.map((movie) => (
-                        <li key={movie.id}>
-                            {movie.title} {movie.vote_average}
-                        </li>
+                        <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
@@ -51,9 +48,7 @@ export default function Movies() {
             {upcomingMovies && (
                 <ul>
                     {upcomingMovies.map((movie) => (
-                        <li key={movie.id}>
-                            {movie.title} {movie.vote_average}
-                        </li>
+                        <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
