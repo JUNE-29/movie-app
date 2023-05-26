@@ -1,53 +1,67 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQueries } from "@tanstack/react-query";
 import MovieCard from "../components/MovieCard";
 
 export default function Movies() {
-    const [trendingMovies, setTrendingMovies] = useState();
-    const [popularMovies, setPopularMovies] = useState();
-    const [nowPlaingMovies, setNowPlayingMovies] = useState();
-    const [upcomingMovies, setUpcomingMovies] = useState();
-
-    useEffect(() => {
-        getTrendingMovies().then((movie) => setTrendingMovies(movie));
-        getPopularMovies().then((movie) => setPopularMovies(movie));
-        getNowPlayingMovies().then((movie) => setNowPlayingMovies(movie));
-        getUpcomingMovies().then((movie) => setUpcomingMovies(movie));
-    }, []);
+    const staleTime = 1000 * 60 * 360;
+    const [trending, popular, nowPlaying, upcoming] = useQueries({
+        queries: [
+            {
+                queryKey: ["trending"],
+                queryFn: () => getTrendingMovies(),
+                staleTime: staleTime,
+            },
+            {
+                queryKey: ["popular"],
+                queryFn: () => getPopularMovies(),
+                staleTime: staleTime,
+            },
+            {
+                queryKey: ["nowPlaying"],
+                queryFn: () => getNowPlayingMovies(),
+                staleTime: staleTime,
+            },
+            {
+                queryKey: ["upcoming"],
+                queryFn: () => getUpcomingMovies(),
+                staleTime: staleTime,
+            },
+        ],
+    });
 
     return (
         <>
             <h1>Trending</h1>
-            {trendingMovies && (
+            {trending.data && (
                 <ul>
-                    {trendingMovies.map((movie) => (
+                    {trending.data.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
             <hr></hr>
             <h1>Popular</h1>
-            {popularMovies && (
+            {popular.data && (
                 <ul>
-                    {popularMovies.map((movie) => (
+                    {popular.data.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
             <hr></hr>
             <h1>Now Playing</h1>
-            {nowPlaingMovies && (
+            {nowPlaying.data && (
                 <ul>
-                    {nowPlaingMovies.map((movie) => (
+                    {nowPlaying.data.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
             )}
             <hr></hr>
             <h1>Upcoming</h1>
-            {upcomingMovies && (
+            {upcoming.data && (
                 <ul>
-                    {upcomingMovies.map((movie) => (
+                    {upcoming.data.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </ul>
