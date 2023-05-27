@@ -8,6 +8,18 @@ export default class TmdbApi {
         });
     }
 
+    async getCategory(category) {
+        if (category === "trending") {
+            return this.getTrendingMovies();
+        } else if (category === "popular") {
+            return this.getPopularMovies();
+        } else if (category === "nowPlaying") {
+            return this.getNowPlayingMovies();
+        } else if (category === "upcoming") {
+            return this.getUpcomingMovies();
+        }
+    }
+
     async getTrendingMovies() {
         const res = await this.httpClient
             .get("trending/movie/week", {

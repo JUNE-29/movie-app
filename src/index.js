@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Movies from "./pages/Movies";
 import MovieDetail from "./pages/MovieDetail";
+import MovieCategories from "./components/MovieCategories";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <Movies /> },
             { path: "/movies", element: <Movies /> },
-            { path: "/movies/:category", element: <Movies /> },
+            { path: "/movies/:category", element: <MovieCategories /> },
             { path: "/movies/detail/:movieId", element: <MovieDetail /> },
             { path: "movies/search/:keyword", element: <Movies /> },
         ],
