@@ -1,29 +1,31 @@
 import axios from "axios";
 import { useQueries } from "@tanstack/react-query";
 import MovieCard from "../components/MovieCard";
+import TmdbApi from "../api/TmdbApi";
 
 export default function Movies() {
+    const tmdbApi = new TmdbApi();
     const staleTime = 1000 * 60 * 360;
     const [trending, popular, nowPlaying, upcoming] = useQueries({
         queries: [
             {
                 queryKey: ["trending"],
-                queryFn: () => getTrendingMovies(),
+                queryFn: () => tmdbApi.getTrendingMovies(),
                 staleTime: staleTime,
             },
             {
                 queryKey: ["popular"],
-                queryFn: () => getPopularMovies(),
+                queryFn: () => tmdbApi.getPopularMovies(),
                 staleTime: staleTime,
             },
             {
                 queryKey: ["nowPlaying"],
-                queryFn: () => getNowPlayingMovies(),
+                queryFn: () => tmdbApi.getNowPlayingMovies(),
                 staleTime: staleTime,
             },
             {
                 queryKey: ["upcoming"],
-                queryFn: () => getUpcomingMovies(),
+                queryFn: () => tmdbApi.getUpcomingMovies(),
                 staleTime: staleTime,
             },
         ],
@@ -68,71 +70,4 @@ export default function Movies() {
             )}
         </>
     );
-}
-
-const client = axios.create({
-    baseURL: "https://api.themoviedb.org/3/",
-    params: { api_key: process.env.REACT_APP_TMDB_API_KEY },
-});
-
-async function getTrendingMovies() {
-    const res = await client
-        .get("trending/movie/week", {
-            params: {
-                language: "ko-KR",
-                adult: false,
-            },
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    return res.data.results;
-}
-
-async function getPopularMovies() {
-    const res = await client
-        .get("movie/popular", {
-            params: {
-                language: "ko-KR",
-                adult: false,
-                page: 1,
-            },
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    return res.data.results;
-}
-
-async function getNowPlayingMovies() {
-    const res = await client
-        .get("movie/now_playing", {
-            params: {
-                language: "ko-KR",
-                adult: false,
-                page: 1,
-                sort_by: "popularity.desc",
-                region: "KR",
-            },
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    return res.data.results;
-}
-
-async function getUpcomingMovies() {
-    const res = await client
-        .get("movie/upcoming", {
-            params: {
-                language: "ko-KR",
-                adult: false,
-                page: 1,
-                region: "KR",
-            },
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    return res.data.results;
 }
