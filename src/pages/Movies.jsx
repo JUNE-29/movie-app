@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useQueries } from "@tanstack/react-query";
 import MovieCard from "../components/MovieCard";
 import TmdbApi from "../api/TmdbApi";

@@ -81,4 +81,20 @@ export default class TmdbApi {
             });
         return res.data.results;
     }
+
+    async search(keyword) {
+        const res = await this.httpClient
+            .get("search/movie", {
+                params: {
+                    language: "ko-KR",
+                    include_adult: false,
+                    page: 1,
+                    query: keyword,
+                },
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        return res.data;
+    }
 }

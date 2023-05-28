@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import TmdbApi from "../api/TmdbApi";
-import MovieCard from "./MovieCard";
-import { useEffect } from "react";
+import MovieCard from "../components/MovieCard";
 
 export default function MovieCategories() {
     const tmdbApi = new TmdbApi();
