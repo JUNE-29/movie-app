@@ -4,10 +4,10 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound";
-import Movies from "./pages/Movies";
 import MovieDetail from "./pages/MovieDetail";
 import MovieCategories from "./pages/MovieCategories";
 import Search from "./pages/Search";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
     {
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
         element: <App />,
         errorElement: <NotFound />,
         children: [
-            { index: true, element: <Movies /> },
-            { path: "/movies", element: <Movies /> },
+            { index: true, element: <Home /> },
+            { path: "/movies", element: <Home /> },
             { path: "/movies/:category", element: <MovieCategories /> },
             { path: "/movies/detail/:movieId", element: <MovieDetail /> },
             { path: "movies/search/:keyword", element: <Search /> },
