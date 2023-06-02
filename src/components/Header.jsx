@@ -21,7 +21,7 @@ export default function Header() {
     };
 
     return (
-        <header className="flex justify-between">
+        <header className="flex justify-between mt-7">
             <section className="flex-1">
                 <img
                     className="cursor-pointer"
@@ -43,7 +43,7 @@ export default function Header() {
                         onChange={handleChange}
                     />
                 </form>
-                <div className="flex flex-col gap-2 w-1/2">
+                <div className="flex flex-col gap-2 w-1/4">
                     <p
                         className="pb-1 mt-2 border-b cursor-pointer hover:text-gray-300"
                         onClick={() => navigate(`/movies/trending`)}

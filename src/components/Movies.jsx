@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-export default function Movies({ categories, title }) {
+export default function Movies({ categories, title, home }) {
     const { isLoading, error, data: movies } = categories;
 
     const addTitle = () => {
@@ -19,15 +19,25 @@ export default function Movies({ categories, title }) {
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>Something is wrong😫</p>}
-            <div>{addTitle()}</div>
-            {movies && (
-                <ul>
-                    {movies.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
-                </ul>
-            )}
-            <hr></hr>
+            <div className="mt-24">
+                <div className="flex justify-between">
+                    <div className="text-3xl font-bold mb-12">{addTitle()}</div>
+                    {home && <p>더보기</p>}
+                </div>
+                {movies && (
+                    <ul
+                        className={
+                            home
+                                ? `flex overflow-x-scroll mb-5 gap-9`
+                                : `grid grid-flow-row grid-cols-5`
+                        }
+                    >
+                        {movies.map((movie) => (
+                            <MovieCard key={movie.id} movie={movie} />
+                        ))}
+                    </ul>
+                )}
+            </div>
         </>
     );
 }

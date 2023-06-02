@@ -32,12 +32,22 @@ export default function Home() {
 
     return (
         <>
-            {trending && <Movies categories={trending} title={"trending"} />}
-            {popular && <Movies categories={popular} title={"popular"} />}
-            {nowPlaying && (
-                <Movies categories={nowPlaying} title={"nowPlaying"} />
+            {trending && (
+                <Movies categories={trending} title={"trending"} home={true} />
             )}
-            {upcoming && <Movies categories={upcoming} title={"upcoming"} />}
+            {popular && (
+                <Movies categories={popular} title={"popular"} home={true} />
+            )}
+            {nowPlaying && (
+                <Movies
+                    categories={nowPlaying}
+                    title={"nowPlaying"}
+                    home={true}
+                />
+            )}
+            {upcoming && (
+                <Movies categories={upcoming} title={"upcoming"} home={true} />
+            )}
         </>
     );
 }
