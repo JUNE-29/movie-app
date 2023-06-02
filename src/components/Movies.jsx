@@ -1,4 +1,9 @@
 import MovieCard from "./MovieCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
+
+import "swiper/css";
+import "swiper/css/free-mode";
 
 export default function Movies({ categories, title, home }) {
     const { isLoading, error, data: movies } = categories;
@@ -24,19 +29,44 @@ export default function Movies({ categories, title, home }) {
                     <div className="text-3xl font-bold mb-12">{addTitle()}</div>
                     {home && <p>더보기</p>}
                 </div>
-                {movies && (
-                    <ul
-                        className={
-                            home
-                                ? `flex overflow-x-scroll mb-5 gap-9`
-                                : `grid grid-flow-row grid-cols-5`
-                        }
-                    >
-                        {movies.map((movie) => (
-                            <MovieCard key={movie.id} movie={movie} />
-                        ))}
-                    </ul>
-                )}
+                {movies &&
+                    // <ul
+                    //     className={
+                    //         home
+                    //             ? `flex overflow-x-scroll mb-5 gap-9`
+                    //             : `grid grid-flow-row grid-cols-5`
+                    //     }
+                    // >
+                    //     {movies.map((movie) => (
+                    //         <MovieCard key={movie.id} movie={movie} />
+                    //     ))}
+                    // </ul>
+                    (home ? (
+                        <div className="mb-5">
+                            <Swiper
+                                slidesPerView={6}
+                                spaceBetween={30}
+                                freeMode={true}
+                                modules={[FreeMode]}
+                                className="mySwiper"
+                            >
+                                {movies.map((movie) => (
+                                    <SwiperSlide>
+                                        <MovieCard
+                                            key={movie.id}
+                                            movie={movie}
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
+                    ) : (
+                        <ul className="grid grid-flow-row grid-cols-5">
+                            {movies.map((movie) => (
+                                <MovieCard key={movie.id} movie={movie} />
+                            ))}
+                        </ul>
+                    ))}
             </div>
         </>
     );
