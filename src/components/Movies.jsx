@@ -1,9 +1,10 @@
 import MovieCard from "./MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper";
+import { FreeMode, Navigation } from "swiper";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import "swiper/css/navigation";
 
 export default function Movies({ categories, title, home }) {
     const { isLoading, error, data: movies } = categories;
@@ -30,24 +31,14 @@ export default function Movies({ categories, title, home }) {
                     {home && <p>더보기</p>}
                 </div>
                 {movies &&
-                    // <ul
-                    //     className={
-                    //         home
-                    //             ? `flex overflow-x-scroll mb-5 gap-9`
-                    //             : `grid grid-flow-row grid-cols-5`
-                    //     }
-                    // >
-                    //     {movies.map((movie) => (
-                    //         <MovieCard key={movie.id} movie={movie} />
-                    //     ))}
-                    // </ul>
                     (home ? (
                         <div className="mb-5">
                             <Swiper
                                 slidesPerView={6}
                                 spaceBetween={30}
                                 freeMode={true}
-                                modules={[FreeMode]}
+                                navigation={true}
+                                modules={[FreeMode, Navigation]}
                                 className="mySwiper"
                             >
                                 {movies.map((movie) => (
