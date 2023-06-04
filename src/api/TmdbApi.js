@@ -26,6 +26,7 @@ export default class TmdbApi {
                 params: {
                     language: "ko-KR",
                     adult: false,
+                    region: "KR",
                 },
             })
             .catch((error) => {
@@ -41,6 +42,7 @@ export default class TmdbApi {
                     language: "ko-KR",
                     adult: false,
                     page: 1,
+                    region: "KR",
                 },
             })
             .catch((error) => {
@@ -90,6 +92,21 @@ export default class TmdbApi {
                     include_adult: false,
                     page: 1,
                     query: keyword,
+                },
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        return res.data;
+    }
+
+    async getMovieDetail(movieId) {
+        const res = await this.httpClient
+            .get(`movie/${movieId}`, {
+                params: {
+                    language: "ko-KR",
+                    region: "KR",
+                    append_to_response: "videos",
                 },
             })
             .catch((error) => {

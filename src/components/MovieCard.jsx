@@ -1,19 +1,27 @@
+import { useNavigate } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { FaRegStar } from "react-icons/fa";
 
 export default function MovieCard({ movie }) {
-    const { title, poster_path, release_date, vote_average } = movie;
+    const { title, poster_path, release_date, vote_average, id } = movie;
+    const navigate = useNavigate();
 
     const getDate = () => {
         const date = release_date.split("-");
         return `${date[0]}년 ${date[1]}월 ${date[2]}일`;
     };
+
+    const goToDetail = () => {
+        navigate(`/movies/detail/${id}`);
+    };
+
     return (
         <li className="flex flex-col flex-shrink-0 w-[13rem] mb-5">
             <img
-                className="w-full object-cover"
+                className="w-full object-cover cursor-pointer"
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 alt={title}
+                onClick={goToDetail}
             />
             <div className="mt-5">
                 <p className="font-bold text-xl">
