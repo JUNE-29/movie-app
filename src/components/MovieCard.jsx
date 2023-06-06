@@ -26,9 +26,12 @@ export default function MovieCard({ movie, search }) {
             } flex-shrink-0`}
         >
             {poster_path ? (
-                <div className="relative iamge_hovering" onClick={goToDetail}>
+                <div
+                    className="relative w-[13rem] iamge_hovering"
+                    onClick={goToDetail}
+                >
                     <img
-                        className="w-[13rem] object-cover cursor-pointer "
+                        className="w-full object-cover cursor-pointer "
                         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                         alt={title}
                     />
@@ -39,7 +42,7 @@ export default function MovieCard({ movie, search }) {
                 </p>
             )}
 
-            <div className={`${search ? "mt-0 ml-5" : "mt-5"}`}>
+            <div className={`${search ? "mt-0 ml-5 w-4/5" : "mt-5"}`}>
                 <div
                     className="font-bold text-xl cursor-pointer hover:text-gray-300"
                     onClick={goToDetail}
