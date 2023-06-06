@@ -26,12 +26,13 @@ export default function MovieCard({ movie, search }) {
             } flex-shrink-0`}
         >
             {poster_path ? (
-                <img
-                    className="w-[13rem] object-cover cursor-pointer"
-                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                    alt={title}
-                    onClick={goToDetail}
-                />
+                <div className="relative iamge_hovering" onClick={goToDetail}>
+                    <img
+                        className="w-[13rem] object-cover cursor-pointer "
+                        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                        alt={title}
+                    />
+                </div>
             ) : (
                 <p className="w-[13rem] p-16 py-36 bg-[#AEAEAE] opacity-80 text-center">
                     <MdHideImage className="m-auto text-3xl" />
