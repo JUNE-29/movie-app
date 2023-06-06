@@ -32,11 +32,11 @@ export default function Header() {
             </section>
             <section className="flex-1 relative">
                 <form onSubmit={handleSubmit}>
-                    <button className="absolute right-0">
+                    <button className="absolute right-1 top-1">
                         <RiSearchLine />
                     </button>
                     <input
-                        className="w-full bg-backgroundColor border-0 border-b"
+                        className="w-full bg-backgroundColor border-0 border-b pb-1"
                         type="text"
                         placeholder="영화를 검색해보세요!"
                         value={text}

@@ -33,7 +33,6 @@ export default function MovieDetail() {
             {movie && (
                 <div className="flex mt-24">
                     <div className="w-1/2">
-                        <p>{console.log(movie)}</p>
                         {movie.poster_path && (
                             <img
                                 className="w-1/2 object-cover m-auto"

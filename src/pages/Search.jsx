@@ -21,12 +21,16 @@ export default function Search() {
             {error && <p>Something is wrong😫</p>}
             {movies && (
                 <>
-                    <h1>
+                    <h1 className="mt-24 mb-6 text-xl font-semibold ">
                         {keyword}에 대한 검색 결과 ( {movies.total_results} )
                     </h1>
                     <ul>
                         {movies.results.map((movie) => (
-                            <MovieCard key={movie.id} movie={movie} />
+                            <MovieCard
+                                key={movie.id}
+                                movie={movie}
+                                search={true}
+                            />
                         ))}
                     </ul>
                 </>

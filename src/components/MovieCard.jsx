@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { FaRegStar } from "react-icons/fa";
+import { MdHideImage } from "react-icons/md";
 
-export default function MovieCard({ movie }) {
-    const { title, poster_path, release_date, vote_average, id } = movie;
+export default function MovieCard({ movie, search }) {
+    const { title, poster_path, release_date, vote_average, overview, id } =
+        movie;
     const navigate = useNavigate();
 
     const getDate = () => {
@@ -16,20 +18,44 @@ export default function MovieCard({ movie }) {
     };
 
     return (
-        <li className="flex flex-col flex-shrink-0 w-[13rem] mb-5">
-            <img
-                className="w-full object-cover cursor-pointer"
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                alt={title}
-                onClick={goToDetail}
-            />
-            <div className="mt-5">
-                <p className="font-bold text-xl">
-                    {title.length > 12
-                        ? `${title.substring(0, 12)}..`
-                        : `${title}`}
+        <li
+            className={`${
+                search
+                    ? "flex flex-row py-10 border-b border-[#AEAEAE] border-opacity-50"
+                    : "flex flex-col w-[13rem] mb-5 "
+            } flex-shrink-0`}
+        >
+            {poster_path ? (
+                <img
+                    className="w-[13rem] object-cover cursor-pointer"
+                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                    alt={title}
+                    onClick={goToDetail}
+                />
+            ) : (
+                <p className="w-[13rem] p-16 py-36 bg-[#AEAEAE] opacity-80 text-center">
+                    <MdHideImage className="m-auto text-3xl" />
                 </p>
-                <p className="text-[#AEAEAE] mt-2">{getDate()}</p>
+            )}
+
+            <div className={`${search ? "mt-0 ml-5" : "mt-5"}`}>
+                <div
+                    className="font-bold text-xl cursor-pointer hover:text-gray-300"
+                    onClick={goToDetail}
+                >
+                    {search ? (
+                        title
+                    ) : (
+                        <p>
+                            {title.length > 12
+                                ? `${title.substring(0, 12)}..`
+                                : `${title}`}
+                        </p>
+                    )}
+                </div>
+                <p className="text-[#AEAEAE] mt-2">
+                    {release_date ? getDate() : "미정"}
+                </p>
                 <div className="mt-2">
                     {vote_average ? (
                         <Rating
@@ -44,6 +70,7 @@ export default function MovieCard({ movie }) {
                         </p>
                     )}
                 </div>
+                {search && <p className="mt-2">{overview}</p>}
             </div>
         </li>
     );
