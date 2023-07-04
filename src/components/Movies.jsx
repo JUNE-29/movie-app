@@ -41,7 +41,7 @@ export default function Movies({ categories, title, home }) {
                                 modules={[FreeMode, Navigation]}
                                 className="mySwiper"
                             >
-                                {movies.map((movie) => (
+                                {movies.results.map((movie) => (
                                     <SwiperSlide>
                                         <MovieCard
                                             key={movie.id}
@@ -53,7 +53,7 @@ export default function Movies({ categories, title, home }) {
                         </div>
                     ) : (
                         <ul className="grid grid-flow-row grid-cols-5">
-                            {movies.map((movie) => (
+                            {movies.results.map((movie) => (
                                 <MovieCard key={movie.id} movie={movie} />
                             ))}
                         </ul>

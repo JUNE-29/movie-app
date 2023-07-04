@@ -1,3 +1,4 @@
+import { CookieSharp } from "@mui/icons-material";
 import axios from "axios";
 
 export default class TmdbApi {
@@ -20,68 +21,69 @@ export default class TmdbApi {
         }
     }
 
-    async getTrendingMovies() {
+    async getTrendingMovies(pageParam) {
         const res = await this.httpClient
             .get("trending/movie/week", {
                 params: {
                     language: "ko-KR",
                     adult: false,
                     region: "KR",
+                    page: pageParam,
                 },
             })
             .catch((error) => {
                 console.error(error);
             });
-        return res.data.results;
+        return res.data;
     }
 
-    async getPopularMovies() {
+    async getPopularMovies(pageParam) {
         const res = await this.httpClient
             .get("movie/popular", {
                 params: {
                     language: "ko-KR",
                     adult: false,
-                    page: 1,
                     region: "KR",
+                    page: pageParam,
                 },
             })
             .catch((error) => {
                 console.error(error);
             });
-        return res.data.results;
+        return res.data;
     }
 
-    async getNowPlayingMovies() {
+    async getNowPlayingMovies(pageParam) {
         const res = await this.httpClient
             .get("movie/now_playing", {
                 params: {
                     language: "ko-KR",
                     adult: false,
-                    page: 1,
                     sort_by: "popularity.desc",
                     region: "KR",
+                    page: pageParam,
                 },
             })
             .catch((error) => {
                 console.error(error);
             });
-        return res.data.results;
+        return res.data;
     }
 
-    async getUpcomingMovies() {
+    async getUpcomingMovies(pageParam) {
         const res = await this.httpClient
             .get("movie/upcoming", {
                 params: {
                     language: "ko-KR",
                     adult: false,
-                    page: 1,
                     region: "KR",
+                    page: pageParam,
                 },
             })
             .catch((error) => {
                 console.error(error);
             });
-        return res.data.results;
+        return res.data;
     }
 
     async search(keyword) {

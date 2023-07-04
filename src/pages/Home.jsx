@@ -1,6 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 import TmdbApi from "../api/TmdbApi";
 import Movies from "../components/Movies";
+import { CookieSharp } from "@mui/icons-material";
 
 export default function Home() {
     const tmdbApi = new TmdbApi();
@@ -32,20 +33,20 @@ export default function Home() {
 
     return (
         <>
-            {trending && (
+            {trending.data && (
                 <Movies categories={trending} title={"trending"} home={true} />
             )}
-            {popular && (
+            {popular.data && (
                 <Movies categories={popular} title={"popular"} home={true} />
             )}
-            {nowPlaying && (
+            {nowPlaying.data && (
                 <Movies
                     categories={nowPlaying}
                     title={"nowPlaying"}
                     home={true}
                 />
             )}
-            {upcoming && (
+            {upcoming.data && (
                 <Movies categories={upcoming} title={"upcoming"} home={true} />
             )}
         </>
