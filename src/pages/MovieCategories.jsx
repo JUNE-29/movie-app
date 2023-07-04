@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import TmdbApi from "../api/TmdbApi";
 import { useEffect } from "react";
 import MovieCard from "../components/MovieCard";
-import Title from "../components/title";
+import Title from "../components/Title";
 
 export default function MovieCategories() {
     const tmdbApi = new TmdbApi();

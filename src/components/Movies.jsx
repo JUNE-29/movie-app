@@ -5,7 +5,7 @@ import { FreeMode, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import Title from "./title";
+import Title from "./Title";
 
 export default function Movies({ categories, title, home }) {
     const { isLoading, error, data: movies } = categories;
