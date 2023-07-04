@@ -1,30 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import TmdbApi from "../api/TmdbApi";
 import { useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import Title from "../components/title";
 
 export default function MovieCategories() {
     const tmdbApi = new TmdbApi();
     const { category } = useParams();
-
-    // const result = useQuery(
-    //     ["movies", category],
-    //     () => tmdbApi.getCategory(category),
-    //     {
-    //         staleTime: 1000 * 60 * 360,
-    //     }
-    // );
-
-    // const { data, error, fetchNextPage } = useInfiniteQuery({
-    //     queryKey: ["popularMovie"],
-    //     queryFn: ({ pageParam = 1 }) => tmdbApi.getPopularMovies(pageParam),
-    //     getNextPageParam: (lastPage, pages) => {
-    //         return lastPage.page < lastPage.total_pages
-    //             ? lastPage.page + 1
-    //             : undefined;
-    //     },
-    // });
     const { data, error, fetchNextPage, refetch, hasNextPage } =
         useInfiniteQuery({
             queryKey: ["movies"],
@@ -53,8 +36,11 @@ export default function MovieCategories() {
 
     return (
         <>
+            <h1 className="mb-12 mt-24">
+                <Title title={category} />
+            </h1>
             {error && <p>Something is wrong😫</p>}
-            {data.pages &&
+            {data &&
                 data.pages.map((movies) => (
                     <ul className="grid grid-flow-row grid-cols-5">
                         {movies.results.map((movie) => (
@@ -63,15 +49,18 @@ export default function MovieCategories() {
                     </ul>
                 ))}
 
-            <button
-                onClick={() =>
-                    hasNextPage
-                        ? fetchNextPage()
-                        : alert("다음 리스트가 없습니다!😅")
-                }
-            >
-                리스트 더 보기
-            </button>
+            <div className="m-auto text-center w-full p-3">
+                <button
+                    className="px-5 py-3 border border-white hover:bg-[#292C2F]"
+                    onClick={() =>
+                        hasNextPage
+                            ? fetchNextPage()
+                            : alert("다음 리스트가 없습니다!😅")
+                    }
+                >
+                    리스트 더 보기
+                </button>
+            </div>
         </>
     );
 }
