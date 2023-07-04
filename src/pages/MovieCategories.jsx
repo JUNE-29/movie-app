@@ -36,9 +36,9 @@ export default function MovieCategories() {
 
     return (
         <>
-            <h1 className="mb-12 mt-24">
+            <div className="mb-12 mt-24">
                 <Title title={category} />
-            </h1>
+            </div>
             {error && <p>Something is wrong😫</p>}
             {data &&
                 data.pages.map((movies) => (
