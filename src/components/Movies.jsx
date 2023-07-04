@@ -1,15 +1,20 @@
-import MovieCard from "./MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+
+import MovieCard from "./MovieCard";
 import Title from "./Title";
+import { useNavigate } from "react-router-dom";
 
 export default function Movies({ categories, title, home }) {
     const { isLoading, error, data: movies } = categories;
 
+    const navigate = useNavigate();
+    const goToCategory = (movieCategory) => {
+        navigate(`/movies/${movieCategory}`);
+    };
     return (
         <>
             {isLoading && <p>Loading...</p>}
@@ -19,7 +24,14 @@ export default function Movies({ categories, title, home }) {
                     <div className="mb-12">
                         <Title title={title} />
                     </div>
-                    {home && <p>더보기</p>}
+                    {home && (
+                        <p
+                            className="cursor-pointer"
+                            onClick={() => goToCategory(title)}
+                        >
+                            더보기
+                        </p>
+                    )}
                 </div>
                 {movies &&
                     (home ? (
