@@ -42,28 +42,40 @@ export default function MovieDetail() {
                         )}
                     </div>
                     <div className="w-1/2">
-                        <p>{movie.title}</p>
-                        <p>{`${getDate()} | ${getGenres()} | ${Math.trunc(
-                            movie.runtime / 60
-                        )}h ${movie.runtime % 60}m`}</p>
-                        {movie.vote_average ? (
-                            <>
-                                <Rating
-                                    name="read-only"
-                                    size="medium"
-                                    value={Math.floor(movie.vote_average) / 2}
-                                    readOnly
-                                />
-                                <span>
-                                    ({Math.floor(movie.vote_average) / 2})
-                                </span>
-                            </>
-                        ) : (
-                            <p className="text-xl opacity-30 text-[#AEAEAE]">
-                                <FaRegStar />
+                        <div className="mb-5">
+                            <p className="text-3xl font-bold mb-3">
+                                {movie.title}
                             </p>
-                        )}
-                        <p>영화소개</p>
+                            <div className="mb-3">
+                                <span className="mr-2">{`${getDate()}`}</span> |
+                                <span className="mx-2">{`${getGenres()}`}</span>{" "}
+                                |
+                                <span className="ml-2">{`${Math.trunc(
+                                    movie.runtime / 60
+                                )}h ${movie.runtime % 60}m`}</span>
+                            </div>
+                            {movie.vote_average ? (
+                                <div className="flex flex-row">
+                                    <Rating
+                                        name="read-only"
+                                        size="medium"
+                                        value={
+                                            Math.floor(movie.vote_average) / 2
+                                        }
+                                        readOnly
+                                    />
+                                    <span className="text-white/70">
+                                        ({Math.floor(movie.vote_average) / 2})
+                                    </span>
+                                </div>
+                            ) : (
+                                <p className="text-xl opacity-30 text-[#AEAEAE]">
+                                    <FaRegStar />
+                                </p>
+                            )}
+                        </div>
+                        <p className="border-t border-white/20"></p>
+                        <p className="mt-6 mb-3 text-2xl font-bold">영화소개</p>
                         <p>{movie.overview}</p>
                     </div>
                 </div>
