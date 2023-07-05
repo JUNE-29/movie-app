@@ -32,7 +32,7 @@ export default function MovieCategories() {
 
     useEffect(() => {
         refetch();
-    }, [category]);
+    }, [category, refetch]);
 
     return (
         <>
