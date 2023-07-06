@@ -19,5 +19,6 @@ code {
 }
 
 #root {
-    @apply w-full max-w-[1308px] m-0 m-auto;
+    /* @apply w-full max-w-[1308px] m-0 m-auto; */
+    @apply relative w-full m-auto;
 }

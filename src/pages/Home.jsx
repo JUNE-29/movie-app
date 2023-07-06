@@ -1,7 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
 import TmdbApi from "../api/TmdbApi";
 import Movies from "../components/Movies";
-import { CookieSharp } from "@mui/icons-material";
 
 export default function Home() {
     const tmdbApi = new TmdbApi();
