@@ -59,6 +59,7 @@ export default function MovieDetail() {
                                     <Rating
                                         name="read-only"
                                         size="medium"
+                                        precision={0.5}
                                         value={
                                             Math.floor(movie.vote_average) / 2
                                         }

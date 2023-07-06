@@ -65,6 +65,7 @@ export default function MovieCard({ movie, search }) {
                         <Rating
                             name="read-only"
                             size="medium"
+                            precision={0.5}
                             value={Math.floor(vote_average) / 2}
                             readOnly
                         />
