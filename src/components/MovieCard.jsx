@@ -22,7 +22,7 @@ export default function MovieCard({ movie, search }) {
             className={`${
                 search
                     ? "flex flex-row py-10 border-b border-[#AEAEAE] border-opacity-50"
-                    : "flex flex-col w-[13rem] mb-7 "
+                    : "flex flex-col w-full items-center mb-7 lg:w-[13rem] lg:items-start"
             } flex-shrink-0`}
         >
             {poster_path ? (

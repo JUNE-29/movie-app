@@ -9,9 +9,9 @@ const queryClient = new QueryClient();
 function App() {
     return (
         <>
-            <ScrollToTopBtn />
-            <div className="w-full max-w-[1308px] m-0 m-auto">
+            <div className="relative w-full m-auto p-4">
                 <Header />
+                <ScrollToTopBtn />
                 <QueryClientProvider client={queryClient}>
                     <Outlet />
                 </QueryClientProvider>

@@ -21,29 +21,38 @@ export default function Header() {
     };
 
     return (
-        <header className="flex justify-between mt-7">
+        <header className="flex flex-col justify-between mt-5 lg:flex-row lg:mt-7">
             <section className="flex-1">
                 <img
-                    className="cursor-pointer"
+                    className="cursor-pointer hidden lg:block"
                     src="/images/logo.png"
                     alt="logo"
                     onClick={goHome}
                 />
+                <p
+                    className="cursor-pointer text-2xl font-bold text-center mb-5 lg:hidden lg:mb-0"
+                    onClick={goHome}
+                >
+                    MOVIELIST
+                </p>
             </section>
-            <section className="flex-1 relative">
-                <form onSubmit={handleSubmit}>
-                    <button className="absolute right-1 top-1">
-                        <RiSearchLine />
-                    </button>
-                    <input
-                        className="w-full bg-backgroundColor border-0 border-b pb-1"
-                        type="text"
-                        placeholder="영화를 검색해보세요!"
-                        value={text}
-                        onChange={handleChange}
-                    />
+
+            <section className="flex-1">
+                <form onSubmit={handleSubmit} className="w-full text-center">
+                    <div className="relative text-center m-auto w-4/5  border-0 border-b lg:w-full">
+                        <input
+                            className=" bg-backgroundColor pb-1 w-full"
+                            type="text"
+                            placeholder="영화를 검색해보세요!"
+                            value={text}
+                            onChange={handleChange}
+                        />
+                        <button className="absolute right-1 top-1">
+                            <RiSearchLine />
+                        </button>
+                    </div>
                 </form>
-                <div className="flex flex-col gap-2 w-1/4">
+                <div className="flex flex-col gap-2 w-4/5 m-auto lg:w-1/4 lg:m-0">
                     <p
                         className="pb-1 mt-2 border-b cursor-pointer hover:text-gray-300"
                         onClick={() => navigate(`/movies/trending`)}

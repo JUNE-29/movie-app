@@ -15,13 +15,14 @@ export default function Movies({ categories, title, home }) {
     const goToCategory = (movieCategory) => {
         navigate(`/movies/${movieCategory}`);
     };
+
     return (
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>Something is wrong😫</p>}
             <div className="mt-24">
-                <div className="flex justify-between">
-                    <div className="mb-12">
+                <div className="flex justify-between items-center mb-12">
+                    <div className="">
                         <Title title={title} />
                     </div>
                     {home && (
@@ -43,6 +44,24 @@ export default function Movies({ categories, title, home }) {
                                 navigation={true}
                                 modules={[FreeMode, Navigation]}
                                 className="mySwiper"
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 0,
+                                    },
+                                    768: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 30,
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 30,
+                                    },
+                                    1440: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 30,
+                                    },
+                                }}
                             >
                                 {movies.results.map((movie) => (
                                     <SwiperSlide>
