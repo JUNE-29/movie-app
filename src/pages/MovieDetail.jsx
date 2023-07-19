@@ -31,26 +31,26 @@ export default function MovieDetail() {
             {isLoading && <p>Loading...</p>}
             {error && <p>Something is wrong😫</p>}
             {movie && (
-                <div className="flex mt-24">
-                    <div className="w-1/2">
+                <div className="flex flex-col mt-24 xl:flex-row">
+                    <div className="xl:w-1/2">
                         {movie.poster_path && (
                             <img
-                                className="w-1/2 object-cover m-auto"
+                                className="object-cover m-auto xl:w-1/2"
                                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                 alt={movie.title}
                             />
                         )}
                     </div>
-                    <div className="w-1/2">
+                    <div className="mt-5 xl:w-1/2 xl:mt-0">
                         <div className="mb-5">
                             <p className="text-3xl font-bold mb-3">
                                 {movie.title}
                             </p>
-                            <div className="mb-3">
-                                <span className="mr-2">{`${getDate()}`}</span> |
-                                <span className="mx-2">{`${getGenres()}`}</span>{" "}
-                                |
-                                <span className="ml-2">{`${Math.trunc(
+                            <div className="mb-3 flex flex-col xl:flex-row">
+                                <span className="xl:mr-2">{`${getDate()}`}</span>
+                                <span className="xl:mx-2">{`${getGenres()}`}</span>
+
+                                <span className="xl:ml-2">{`${Math.trunc(
                                     movie.runtime / 60
                                 )}h ${movie.runtime % 60}m`}</span>
                             </div>
@@ -77,7 +77,7 @@ export default function MovieDetail() {
                         </div>
                         <p className="border-t border-white/20"></p>
                         <p className="mt-6 mb-3 text-2xl font-bold">영화소개</p>
-                        <p>{movie.overview}</p>
+                        <p className="mb-6 xl:mb-0">{movie.overview}</p>
                     </div>
                 </div>
             )}

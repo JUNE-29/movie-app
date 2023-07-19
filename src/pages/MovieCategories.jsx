@@ -42,7 +42,7 @@ export default function MovieCategories() {
             {error && <p>Something is wrong😫</p>}
             {data &&
                 data.pages.map((movies) => (
-                    <ul className="grid grid-flow-row grid-cols-5">
+                    <ul className="grid grid-flow-row grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                         {movies.results.map((movie) => (
                             <MovieCard key={movie.id} movie={movie} />
                         ))}
