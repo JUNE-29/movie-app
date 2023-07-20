@@ -1,5 +1,5 @@
 export default function Title({ title }) {
-    const styling = "text-3xl font-bold";
+    const styling = "text-2xl font-bold md:text-3xl";
 
     if (title === "trending") {
         return <h1 className={styling}>트렌딩</h1>;
